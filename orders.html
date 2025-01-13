@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orders</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <aside>
+      <div class="top">
+        <div class="logo">
+          <h2>G <span class="success">LOWING</span></h2>
+        </div>
+        <div class="close" id="close_btn">
+          <span class="material-symbols-sharp">close</span>
+        </div>
+      </div>
+      <div class="sidebar">
+        <a href="index.html">
+          <span class="material-symbols-sharp">grid_view</span>
+          <h3>Dashboard</h3>
+        </a>
+        <a href="manage_product.html">
+          <span class="material-symbols-sharp">receipt_long</span>
+          <h3>Manage Products</h3>
+        </a>
+        <a href="orders.html" class="active">
+          <span class="material-symbols-sharp">shopping_cart</span>
+          <h3>Orders</h3>
+        </a>
+        <a href="messages.html">
+          <span class="material-symbols-sharp">message</span>
+          <h3>Messages</h3>
+        </a>
+        <a href="#logout">
+          <span class="material-symbols-sharp">logout</span>
+          <h3>Logout</h3>
+        </a>
+      </div>
+    </aside>
+
+    <main id="content">
+      <h1>Orders</h1>
+      <div class="orders-section">
+        <table class="orders-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Customer</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Dynamic order rows will be inserted here -->
+            <tr>
+              <td>#1001</td>
+              <td>John Doe</td>
+              <td>Rp 250,000</td>
+              <td>Pending</td>
+              <td>
+                <button class="view-btn">View</button>
+                <button class="update-btn">Update</button>
+              </td>
+            </tr>
+            <tr>
+              <td>#1002</td>
+              <td>Jane Smith</td>
+              <td>Rp 400,000</td>
+              <td>Completed</td>
+              <td>
+                <button class="view-btn">View</button>
+                <button class="update-btn">Update</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+    <div class="right">
+      <div class="top">
+        <button id="menu_bar">
+          <span class="material-symbols-sharp">menu</span>
+        </button>
+        <div class="profile">
+          <div class="info">
+            <p><b>Glowsie</b></p>
+            <p>Seller</p>
+          </div>
+          <div class="profile-photo">
+            <img src="./images/profile.jpeg" alt="Profile">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Add click events for View and Update buttons
+    const viewButtons = document.querySelectorAll('.view-btn');
+    const updateButtons = document.querySelectorAll('.update-btn');
+
+    viewButtons.forEach(btn => {
+      btn.addEventListener('click', function() {
+        alert('View order details feature is under development.');
+      });
+    });
+
+    updateButtons.forEach(btn => {
+      btn.addEventListener('click', function() {
+        alert('Update order status feature is under development.');
+      });
+    });
+  </script>
+</body>
+</html>
