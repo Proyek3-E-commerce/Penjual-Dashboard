@@ -106,26 +106,74 @@
   </div>
 
   <script>
-    // Add event listener to the Add Product button
-    document.getElementById('add-product').addEventListener('click', function() {
-      alert('Feature to add a product coming soon!');
-    });
+    // Fungsi untuk mengambil semua produk dan menampilkannya di tabel
+async function fetchProducts() {
+  try {
+    const response = await fetch('http://localhost:5000/api/products'); // Ganti dengan URL backend Anda
 
-    // Add click events for Edit and Delete buttons
-    const editButtons = document.querySelectorAll('.edit-btn');
-    const deleteButtons = document.querySelectorAll('.delete-btn');
+    if (!response.ok) {
+      throw new Error('Failed to fetch products');
+    }
 
-    editButtons.forEach(btn => {
-      btn.addEventListener('click', function() {
-        alert('Edit feature is under development.');
-      });
-    });
+    const data = await response.json();
 
-    deleteButtons.forEach(btn => {
-      btn.addEventListener('click', function() {
-        alert('Delete feature is under development.');
-      });
+    if (data.status === 'success') {
+      renderProducts(data.data);
+    } else {
+      console.error(data.message);
+      alert('Failed to load products: ' + data.message);
+    }
+  } catch (error) {
+    console.error(error);
+    alert('Error fetching products: ' + error.message);
+  }
+}
+
+// Fungsi untuk menampilkan produk di tabel
+function renderProducts(products) {
+  const tableBody = document.querySelector('.product-table tbody');
+  tableBody.innerHTML = ''; // Kosongkan isi tabel sebelum menambahkan data baru
+
+  products.forEach((product, index) => {
+    const row = document.createElement('tr');
+
+    row.innerHTML = `
+      <td>${index + 1}</td>
+      <td>${product.name}</td>
+      <td>Rp ${product.price.toLocaleString()}</td>
+      <td>${product.stock || 'N/A'}</td>
+      <td>
+        <button class="edit-btn">Edit</button>
+        <button class="delete-btn">Delete</button>
+      </td>
+    `;
+
+    tableBody.appendChild(row);
+  });
+
+  attachActionListeners();
+}
+
+// Fungsi untuk menambahkan event listener pada tombol Edit dan Delete
+function attachActionListeners() {
+  const editButtons = document.querySelectorAll('.edit-btn');
+  const deleteButtons = document.querySelectorAll('.delete-btn');
+
+  editButtons.forEach(btn => {
+    btn.addEventListener('click', function () {
+      alert('Edit feature is under development.');
     });
+  });
+
+  deleteButtons.forEach(btn => {
+    btn.addEventListener('click', function () {
+      alert('Delete feature is under development.');
+    });
+  });
+}
+
+// Panggil fungsi fetchProducts saat halaman selesai dimuat
+document.addEventListener('DOMContentLoaded', fetchProducts);
   </script>
 
 <script src="js/manage_product.js"></script>
